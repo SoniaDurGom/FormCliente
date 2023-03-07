@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Formulario de Usuario</h1>
+    <form (ngSubmit)="onSubmit()" #formulario="ngForm">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" required 
+            [(ngModel)]="model.nombre" name="nombre">
+
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" required
+            [(ngModel)]="model.email" name="email">  <!-- "model esta instanciado en el formulario.ts es de la clase usuario" -->
+        </div>
+        <div class="form-group">
+            <label for="pais">Pais</label>
+            <select class="form-control" id="pais"
+                 [(ngModel)]="model.pais" name="pais">
+                <option *ngFor="let p of paises " [value]="p">{{p}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default" [disabled]="!formulario.form.valid">Enviar</button>
+    </form>
+
+    <div [hidden]="!submitted">
+        Enviado: <br>
+        Nombre:{{model.nombre}} <br>
+        Email:{{model.email}} <br>
+        País: {{model.pais}} <br>
+        <button class="btn btn-default" (click)="submitted=false">Eliminar</button>
+
+    </div>
+</div>
